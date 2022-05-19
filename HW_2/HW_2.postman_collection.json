@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "d0c0dc33-a9c1-4e39-bca2-840bb8c7cbc9",
+		"name": "HW_2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "EP_1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let ghgh = pm.response.text()\r",
+							"\r",
+							"console.log(ghgh)\r",
+							"\r",
+							"pm.test(\"fsfdf\",function() {\r",
+							"pm.expect(pm.response.text()).to.eql(\"This is the first responce from server!\") ///или to.include\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://162.55.220.72:5005/first",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"first"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EP_2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Спарсить responce body в json\r",
+							"let jsonData = pm.response.json();\r",
+							"console.log(jsonData)\r",
+							"\r",
+							"//Проверить, что name (also age, salary) в ответе равно name с request (name вбить руками)\r",
+							"pm.test(\"Test_1\", function () {\r",
+							"    pm.expect(jsonData.name).to.eql(\"Max\");\r",
+							"    pm.expect(jsonData.age).to.eql(\"22\");\r",
+							"    pm.expect(jsonData.salary).to.eql(500);\r",
+							"});\r",
+							"\r",
+							"// Спарсить request \r",
+							"let req = request.data; ///без JSON.parse(request.data) , т.к мы не json передаем в запросе\r",
+							"console.log(req)\r",
+							"\r",
+							"//Проверить, что name в ответе равно name s request (name забрать из request.)\r",
+							"pm.test(\"Test_2\", function () {\r",
+							"    let req_name = req.name\r",
+							"    pm.expect(jsonData.name).to.eql(req_name);\r",
+							"\r",
+							"    let req_age = req.age\r",
+							"    pm.expect(jsonData.age).to.eql(req_age);\r",
+							"\r",
+							"    let req_salary = Number(req.salary)\r",
+							"    pm.expect(jsonData.salary).to.eql(req_salary);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "default"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}",
+							"type": "default"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5005/user_info_3",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"user_info_3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
