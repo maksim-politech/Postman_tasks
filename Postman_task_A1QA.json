@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "18ca1fa9-a7ed-4872-9879-97c824f5d990",
+		"name": "Collection_A1QA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Request1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dummy.restapiexample.com/api/v1/employees",
+					"protocol": "https",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dummy.restapiexample.com/api/v1/employee/2",
+					"protocol": "https",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"employee",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Id=2 exists",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"   var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Your test name 1\", function () {\r",
+							"    pm.expect(jsonData.data[1].id).to.eql(2);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"var jsonData_String =  JSON.stringify(jsonData);\r",
+							"console.log(jsonData_String)\r",
+							"pm.test(\"Your test name 2\",function() {\r",
+							"    pm.expect(jsonData_String).to.include('\"id\":2')   \r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dummy.restapiexample.com/api/v1/employees",
+					"protocol": "https",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "dfgdfg",
+							"type": "default"
+						},
+						{
+							"key": "age",
+							"value": "25",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://dummy.restapiexample.com/api/v1/create",
+					"protocol": "https",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"create"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "zdfgxb",
+							"disabled": true
+						},
+						{
+							"key": "age",
+							"value": "20",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request4",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "age",
+							"value": "23",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://dummy.restapiexample.com/api/v1/update/7773",
+					"protocol": "https",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"update",
+						"7773"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request5",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://dummy.restapiexample.com/api/v1/delete/7773",
+					"protocol": "https",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"delete",
+						"7773"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
